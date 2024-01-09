@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css2?family=Genos&family=Kanit&family=Montserrat:wght@300&display=swap");
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+#content {
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 10% 90%;
+  align-items: center;
+  text-align: center;
+  font-family: "Genos", sans-serif;
+}
+
+#header {
+  font-size: 90px;
+  margin: 10px;
+}
+
+.gameBody {
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.gameBody > div {
+  margin: 30px;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
+  grid-template-rows: repeat(10, 60px);
+  margin: 50px 0px;
+  gap: 3px;
+}
+
+.gameBoard > div {
+  border: solid 1px black;
+}
+
+h2 {
+  font-size: 45px;
+}
+
+dialog {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  font-size: 25px;
+  padding: 40px 50px;
+  border-radius: 10px;
+}
+
+#detailsForm > div:nth-child(1) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 25px 0px;
+}
+
+#playerName {
+  width: 250px;
+  resize: none;
+  padding: 5px;
+}
+
+label {
+  font-size: 32px;
+}
+
+button {
+  padding: 5px;
+  font-size: 20px;
+}
+
+.gridDiaBody {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 20px;
+}
+
+.dragShips {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dragShips > div {
+  border: solid 1px black;
+  padding: 5px;
+  text-align: center;
+}
