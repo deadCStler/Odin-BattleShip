@@ -1,5 +1,5 @@
-import { showInputDialog } from "./inputDialog";
-import { mainDOM } from "./mainDOM";
+import { eventShipsHanlders, getName } from "./inputGrid";
+import { mainDOM, showInputDialog } from "./mainDOM";
 import { createDialog } from "./startDialog";
 import "./style.css";
 
@@ -18,6 +18,7 @@ const takeGridInput = function () {
   const dialog = showInputDialog();
   content.appendChild(dialog);
   dialog.showModal();
+  eventShipsHanlders();
   dialog.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
     let grid = dialog.querySelector("#playerBoard");
@@ -35,7 +36,7 @@ const start = (function () {
 
   dialog.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
-    const playerName = document.getElementById("playerName").value;
+    getName(document.getElementById("playerName").value);
     dialog.close();
     dialog.querySelector("form").reset();
     content.removeChild(dialog);

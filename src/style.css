@@ -54,7 +54,7 @@ dialog {
   justify-content: center;
   margin: auto;
   font-size: 25px;
-  padding: 40px 50px;
+  padding: 30px 40px;
   border-radius: 10px;
 }
 
@@ -74,6 +74,10 @@ dialog {
   padding: 5px;
 }
 
+.detailsHeading{
+    padding-bottom: 10px;
+}
+
 label {
   font-size: 32px;
 }
@@ -83,21 +87,3 @@ button {
   font-size: 20px;
 }
 
-.gridDiaBody {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  gap: 20px;
-}
-
-.dragShips {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.dragShips > div {
-  border: solid 1px black;
-  padding: 5px;
-  text-align: center;
-}

@@ -1,11 +1,13 @@
-export const createGrid = function () {
+import { getName } from "./inputGrid";
+
+const createGrid = function () {
   const grid = document.createElement("div");
   grid.classList.add("gameBoard");
 
-  for (let i = 0; i < 10; i++) {
-    for (let j = 0; j < 10; j++) {
+  for (let y = 9; y >= 0; y--) {
+    for (let x = 0; x < 10; x++) {
       let div = document.createElement("div");
-      div.setAttribute("id", `${i}-${j}`);
+      div.setAttribute("id", `${x}-${y}`);
       grid.appendChild(div);
     }
   }
@@ -26,7 +28,7 @@ export const mainDOM = function (playerGrid) {
   gameboardComp.setAttribute("id", "compBoard");
 
   let playerHead = document.createElement("h2");
-  playerHead.textContent = "Player's Board";
+  playerHead.textContent = `${getName()}'s Board`;
 
   let compHead = document.createElement("h2");
   compHead.textContent = "Computer's Board";
@@ -40,4 +42,37 @@ export const mainDOM = function (playerGrid) {
   gameBody.appendChild(div2);
 
   return gameBody;
+};
+
+export const showInputDialog = function () {
+  let dialog = document.createElement("dialog");
+  dialog.classList.add("details");
+
+  let form = document.createElement("form");
+  form.setAttribute("id", "gridForm");
+
+  let div = document.createElement("div");
+  div.textContent = "Drag the ships on the board below.";
+  div.classList.add("detailsHeading");
+
+  let axis = document.createElement("button");
+  axis.textContent = "Change Axis";
+  axis.setAttribute("type", "button");
+  axis.setAttribute("id", "changeAxis");
+
+  let grid = createGrid();
+  grid.setAttribute("id", "playerBoard");
+
+  let submitButton = document.createElement("button");
+  submitButton.innerHTML = "Submit";
+  submitButton.setAttribute("type", "submit");
+
+  form.appendChild(div);
+  form.appendChild(axis);
+  form.appendChild(grid);
+  form.appendChild(submitButton);
+
+  dialog.appendChild(form);
+
+  return dialog;
 };

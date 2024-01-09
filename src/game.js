@@ -24,23 +24,15 @@ const setupComp = (comp, gameboardComp) => {
   );
 };
 
-export const Game = function () {
-  const player = new Player("Test Player");
-  const gameboardPlayer = new Gameboard(5);
+export const Game = function (name) {
+  const player = new Player(name);
+  const gameboardPlayer = new Gameboard(10);
 
-  const comp = new Computer(5);
-  const gameboardComp = new Gameboard(5);
+  const comp = new Computer(10);
+  const gameboardComp = new Gameboard(10);
   setupComp(comp, gameboardComp);
 
-  const playerShip1 = new Ship(4);
-  const playerShip2 = new Ship(3);
-  const playerShip3 = new Ship(2);
-
-  gameboardPlayer.placeShips(playerShip1, [1, 0], [4, 0]);
-  gameboardPlayer.placeShips(playerShip2, [1, 3], [3, 3]);
-  gameboardPlayer.placeShips(playerShip3, [0, 1], [0, 2]);
-
-  playGame = (hitIndex) => {
+  const playGame = (hitIndex) => {
     gameboardComp.receiveAttack(hitIndex);
     gameboardPlayer.receiveAttack(comp.makeMove());
     if (gameboardComp.checkAllSunk()) {
@@ -51,6 +43,7 @@ export const Game = function () {
     return false;
   };
   return {
+    gameboardPlayer,
     playGame,
   };
 };
