@@ -1,6 +1,7 @@
-import { eventShipsHanlders, getName } from "./inputGrid";
+import { checkShipLength, eventShipsHanlders, getName } from "./inputGrid";
 import { mainDOM, showInputDialog } from "./mainDOM";
 import { createDialog } from "./startDialog";
+import { computerEventListener } from "./game";
 import "./style.css";
 
 const content = document.querySelector("#content");
@@ -12,6 +13,7 @@ const showBody = function (playerGrid) {
 
   content.appendChild(head);
   content.appendChild(mainDOM(playerGrid));
+  computerEventListener();
 };
 
 const takeGridInput = function () {
@@ -21,11 +23,13 @@ const takeGridInput = function () {
   eventShipsHanlders();
   dialog.querySelector("form").addEventListener("submit", (e) => {
     e.preventDefault();
-    let grid = dialog.querySelector("#playerBoard");
-    dialog.close();
-    dialog.querySelector("form").reset();
-    content.removeChild(dialog);
-    showBody(grid);
+    if (checkShipLength() === 0) {
+      let grid = dialog.querySelector("#playerBoard");
+      dialog.close();
+      dialog.querySelector("form").reset();
+      content.removeChild(dialog);
+      showBody(grid);
+    }
   });
 };
 

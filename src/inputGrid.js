@@ -1,6 +1,5 @@
 import { Game } from "./game";
 import { Ship } from "./ship";
-
 let currAxis = "x";
 let shipLen = [5, 4, 3, 2, 2];
 let playerName = "";
@@ -13,7 +12,10 @@ export const getName = (name = null) => {
   return playerName;
 };
 
-const gameObj = new Game(getName());
+export const checkShipLength = () => shipLen.length;
+
+export const gameObj = new Game(getName());
+
 
 const changeAxis = () => {
   currAxis = currAxis === "x" ? "y" : "x";
@@ -43,13 +45,21 @@ const highlightShip = (e) => {
 };
 
 function highlightCells(startCell, len, axis) {
+  let highlightArr = [];
   let [startX, startY] = startCell.split("-");
   startX = parseInt(startX);
   startY = parseInt(startY);
   for (let i = 0; i < len; i++) {
     let cellId =
       axis === "x" ? `${startX + i}-${startY}` : `${startX}-${startY - i}`;
-    document.getElementById(cellId).style.backgroundColor = "black";
+    if (!usedID.includes(cellId)) {
+      highlightArr.push(cellId);
+    }
+    if (highlightArr.length === len) {
+      highlightArr.forEach((cellId) => {
+        document.getElementById(cellId).style.backgroundColor = "black";
+      });
+    }
   }
 }
 
