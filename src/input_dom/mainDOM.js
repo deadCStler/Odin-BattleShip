@@ -1,4 +1,3 @@
-import { start } from "./index";
 import { getName } from "./inputGrid";
 
 const createGrid = function () {
@@ -49,6 +48,22 @@ export const createDialog = function () {
 };
 
 export const mainDOM = function (playerGrid) {
+  let container = document.createElement("div");
+
+  let rules = document.createElement("div");
+  rules.classList.add("rules");
+
+  let rule1 = document.createElement("div");
+  rule1.classList.add('rule1');
+  rule1.innerHTML = "<div></div><h2>:indicates that the ship was hit</h2>";
+
+  let rule2 = document.createElement("div");
+  rule2.classList.add('rule2');
+  rule2.innerHTML = "<div></div><h2>:indicates that the ship wasn't hit.</h2>";
+
+  rules.appendChild(rule1);
+  rules.appendChild(rule2);
+
   let gameBody = document.createElement("div");
   gameBody.classList.add("gameBody");
 
@@ -75,7 +90,10 @@ export const mainDOM = function (playerGrid) {
   gameBody.appendChild(div1);
   gameBody.appendChild(div2);
 
-  return gameBody;
+  container.appendChild(gameBody);
+  container.appendChild(rules);
+
+  return container;
 };
 
 export const showInputDialog = function () {
@@ -86,7 +104,7 @@ export const showInputDialog = function () {
   form.setAttribute("id", "gridForm");
 
   let div = document.createElement("div");
-  div.textContent = "Drag the ships on the board below.";
+  div.textContent = "Place the ships on the board below.";
   div.classList.add("detailsHeading");
 
   let axis = document.createElement("button");
@@ -139,7 +157,8 @@ export const displayWinner = function (win) {
   winner.textContent = win;
 
   let restartButton = document.createElement("button");
-  restartButton.innerHTML = "Restart";
+  restartButton.textContent = "Restart";
+  restartButton.setAttribute("onClick", "window.location.reload();");
 
   dialog.appendChild(div);
   dialog.appendChild(winner);
@@ -147,9 +166,4 @@ export const displayWinner = function (win) {
 
   content.appendChild(dialog);
   dialog.showModal();
-
-  restartButton.addEventListener("click", () => {
-    content.innerHTML = "";
-    start();
-  });
 };

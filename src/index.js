@@ -1,6 +1,6 @@
-import { checkShipLength, eventShipsHanlders, getName } from "./inputGrid";
-import { createDialog, mainDOM, showInputDialog } from "./mainDOM";
-import { computerEventListener } from "./game";
+import { checkShipLength, eventShipsHanlders, getName } from "./input_dom/inputGrid";
+import { createDialog, mainDOM, showInputDialog } from "./input_dom/mainDOM";
+import { computerEventListener } from "./game_classes/game";
 import "./style.css";
 
 const content = document.querySelector("#content");

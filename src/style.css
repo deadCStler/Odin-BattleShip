@@ -5,8 +5,12 @@
   margin: 0;
 }
 
-#content {
+body {
   height: 100vh;
+  background-color: #e5e5e5;
+}
+
+#content {
   display: grid;
   grid-template-rows: 10% 90%;
   align-items: center;
@@ -16,30 +20,49 @@
 
 #header {
   font-size: 90px;
-  margin: 10px;
+}
+
+.rule1,
+.rule2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.rule1 > div {
+  height: 30px;
+  width: 30px;
+  border: solid 1px black;
+  background-color: red;
+}
+
+.rule2 > div {
+  height: 30px;
+  width: 30px;
+  border: solid 1px black;
+  background-color: green;
 }
 
 .gameBody {
-  height: 90vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
-}
-
-.gameBody > div {
-  margin: 30px;
+  background-color: #e5e5e5;
+  gap: 20px;
 }
 
 .gameBoard {
   display: grid;
   grid-template-columns: repeat(10, 60px);
   grid-template-rows: repeat(10, 60px);
-  margin: 50px 0px;
   gap: 3px;
+  margin: 15px 0px;
 }
 
 .gameBoard > div {
+  background-color: #ffffff;
   border: solid 1px black;
 }
 
@@ -74,8 +97,8 @@ dialog {
   padding: 5px;
 }
 
-.detailsHeading{
-    padding-bottom: 10px;
+.detailsHeading {
+  padding-bottom: 10px;
 }
 
 label {
@@ -86,4 +109,3 @@ button {
   padding: 5px;
   font-size: 20px;
 }
-

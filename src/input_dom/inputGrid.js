@@ -1,5 +1,6 @@
-import { Game } from "./game";
-import { Ship } from "./ship";
+import { Game } from "../game_classes/game";
+import { Ship } from "../game_classes/ship";
+
 let currAxis = "x";
 let shipLen = [5, 4, 3, 2, 2];
 let playerName = "";
@@ -123,7 +124,6 @@ export const eventShipsHanlders = function () {
   const gridArr = document.querySelectorAll("#playerBoard>div");
   gridArr.forEach((gridItem) => {
     gridItem.addEventListener("mouseover", highlightShip);
-    // gridItem.removeListener("mouseleave", highlightShip);
     gridItem.addEventListener("mouseleave", removeHighlight);
   });
 };

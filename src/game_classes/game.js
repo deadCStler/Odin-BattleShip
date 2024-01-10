@@ -1,6 +1,10 @@
 import { Gameboard } from "./gameboard";
-import { gameObj, getName } from "./inputGrid";
-import { displayWinner, updateHitMove, updateMissMove } from "./mainDOM";
+import { gameObj, getName } from "../input_dom/inputGrid";
+import {
+  displayWinner,
+  updateHitMove,
+  updateMissMove,
+} from "../input_dom/mainDOM";
 import { Computer, Player } from "./player";
 import { Ship } from "./ship";
 
