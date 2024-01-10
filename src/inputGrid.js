@@ -16,14 +16,17 @@ export const checkShipLength = () => shipLen.length;
 
 export const gameObj = new Game(getName());
 
-
 const changeAxis = () => {
   currAxis = currAxis === "x" ? "y" : "x";
   return currAxis;
 };
 
-function addValidListener(cell) {
-  document.getElementById(cell).addEventListener("click", shipPlaced);
+function addValidListener(cell, val) {
+  if (val === "add") {
+    document.getElementById(cell).addEventListener("click", shipPlaced);
+  } else {
+    document.getElementById(cell).removeEventListener("click", shipPlaced);
+  }
 }
 
 const highlightShip = (e) => {
@@ -36,15 +39,14 @@ const highlightShip = (e) => {
     } else {
       validPlacement = checkY(e.target.attributes.id.value, len);
     }
-
     if (validPlacement) {
       highlightCells(e.target.attributes.id.value, len, currAxis);
-      addValidListener(e.target.attributes.id.value, len, currAxis);
     }
   }
 };
 
 function highlightCells(startCell, len, axis) {
+  addValidListener(startCell, "remove");
   let highlightArr = [];
   let [startX, startY] = startCell.split("-");
   startX = parseInt(startX);
@@ -59,6 +61,7 @@ function highlightCells(startCell, len, axis) {
       highlightArr.forEach((cellId) => {
         document.getElementById(cellId).style.backgroundColor = "black";
       });
+      addValidListener(startCell, "add");
     }
   }
 }
@@ -120,6 +123,7 @@ export const eventShipsHanlders = function () {
   const gridArr = document.querySelectorAll("#playerBoard>div");
   gridArr.forEach((gridItem) => {
     gridItem.addEventListener("mouseover", highlightShip);
+    // gridItem.removeListener("mouseleave", highlightShip);
     gridItem.addEventListener("mouseleave", removeHighlight);
   });
 };

@@ -23,11 +23,14 @@ export class Gameboard {
 
   checkShipHit = (x, y) => {
     for (const shipObj of this.shipsCoordinates) {
-      const startX = shipObj.startCoordinate[0];
-      const startY = shipObj.startCoordinate[1];
-      const endX = shipObj.endCoordinate[0];
-      const endY = shipObj.endCoordinate[1];
-      if (x >= startX && x <= endX && y >= startY && y <= endY) {
+      const [startX, startY] = shipObj.startCoordinate;
+      const [endX, endY] = shipObj.endCoordinate;
+      if (
+        x >= startX &&
+        x <= endX &&
+        y >= Math.min(startY, endY) &&
+        y <= Math.max(startY, endY)
+      ) {
         return shipObj.ship;
       }
     }

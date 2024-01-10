@@ -1,3 +1,4 @@
+import { start } from "./index";
 import { getName } from "./inputGrid";
 
 const createGrid = function () {
@@ -12,6 +13,39 @@ const createGrid = function () {
     }
   }
   return grid;
+};
+
+export const createDialog = function () {
+  let dialog = document.createElement("dialog");
+  dialog.classList.add("details");
+
+  let form = document.createElement("form");
+  form.setAttribute("id", "detailsForm");
+
+  let div = document.createElement("div");
+
+  let titleLabel = document.createElement("label");
+  titleLabel.setAttribute("for", "playerName");
+  titleLabel.innerHTML = "Enter Player's Name";
+
+  let titleInput = document.createElement("input");
+  titleInput.setAttribute("id", "playerName");
+  titleInput.setAttribute("name", "playerName");
+  titleInput.setAttribute("type", "text");
+  titleInput.setAttribute("required", "true");
+
+  div.appendChild(titleLabel);
+  div.appendChild(titleInput);
+
+  let submitButton = document.createElement("button");
+  submitButton.innerHTML = "Submit";
+
+  form.appendChild(div);
+  form.appendChild(submitButton);
+
+  dialog.appendChild(form);
+
+  return dialog;
 };
 
 export const mainDOM = function (playerGrid) {
@@ -75,4 +109,47 @@ export const showInputDialog = function () {
   dialog.appendChild(form);
 
   return dialog;
+};
+
+export const updateHitMove = function (x, y, id) {
+  let idEle = document.getElementById(id);
+  let id2 = `${x}-${y}`;
+  let hitEle = idEle.querySelector(`#${CSS.escape(id2)}`);
+  hitEle.style.backgroundColor = "red";
+  hitEle.style.pointerEvents = "none";
+};
+
+export const updateMissMove = function (x, y, id) {
+  let idEle = document.getElementById(id);
+  let id2 = `${x}-${y}`;
+  let missEle = idEle.querySelector(`#${CSS.escape(id2)}`);
+  missEle.style.backgroundColor = "green";
+  missEle.style.pointerEvents = "none";
+};
+
+export const displayWinner = function (win) {
+  const content = document.querySelector("#content");
+  let dialog = document.createElement("dialog");
+  dialog.classList.add("details");
+
+  let div = document.createElement("div");
+  div.textContent = "The winner is:";
+
+  let winner = document.createElement("h1");
+  winner.textContent = win;
+
+  let restartButton = document.createElement("button");
+  restartButton.innerHTML = "Restart";
+
+  dialog.appendChild(div);
+  dialog.appendChild(winner);
+  dialog.appendChild(restartButton);
+
+  content.appendChild(dialog);
+  dialog.showModal();
+
+  restartButton.addEventListener("click", () => {
+    content.innerHTML = "";
+    start();
+  });
 };

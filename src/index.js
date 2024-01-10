@@ -1,6 +1,5 @@
 import { checkShipLength, eventShipsHanlders, getName } from "./inputGrid";
-import { mainDOM, showInputDialog } from "./mainDOM";
-import { createDialog } from "./startDialog";
+import { createDialog, mainDOM, showInputDialog } from "./mainDOM";
 import { computerEventListener } from "./game";
 import "./style.css";
 
@@ -33,7 +32,7 @@ const takeGridInput = function () {
   });
 };
 
-const start = (function () {
+export const start = function () {
   const dialog = createDialog();
   content.appendChild(dialog);
   dialog.showModal();
@@ -46,4 +45,6 @@ const start = (function () {
     content.removeChild(dialog);
     takeGridInput();
   });
-})();
+};
+
+start();
